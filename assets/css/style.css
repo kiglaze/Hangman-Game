@@ -4,3 +4,6 @@ body {
 .my-guess {
 	letter-spacing: 3px;
 }
+.repeated-incorrect-guess {
+	display: none;
+}
