@@ -1,19 +1,13 @@
 var currentWord = "paragliding";
-var arrayDisplayedGuess = new Array(currentWord.length);
-arrayDisplayedGuess.fill("_");
-var arrayWrongGuessedLetters = [];
-var numGuesses = 0;
-var incorrectGuesses = 0;
-var attemptsRemaining = 12;
-var canPlay = true;
 document.addEventListener("DOMContentLoaded", function(event) { 
 	var guessElement = document.querySelector(".my-guess");
 	var attemptsRemainingElement = document.querySelector(".attempts-remaining");
 	var wrongGuessesElement = document.querySelector(".wrong-guesses");
 	var gameStatusMessageElement = document.querySelector(".game-status-message");
 	var repeatedIncorrectGuessElement = document.querySelector(".repeated-incorrect-guess");
-  	updateDisplayedGuesses();
-  	updateAttemptsRemaining();
+	var freshGameSameWordButton = document.querySelector(".fresh-game-same-word");
+	var freshGameNewWordButton = document.querySelector(".fresh-game-new-word");
+  	startNewGame(currentWord);
 	document.addEventListener('keydown', function(e) {
 		debugger;
 		var alnumRegex = /^[0-9a-z]+$/;
@@ -52,6 +46,29 @@ document.addEventListener("DOMContentLoaded", function(event) {
 	    	numGuesses++;
 	    }
 	}); 
+    freshGameSameWordButton.addEventListener('click', function(e) {
+    	startFreshGameSameWord();
+    });
+    freshGameNewWordButton.addEventListener('click', function(e) {
+    	startFreshGameNewWord();
+    });
+
+    function startNewGame(currentWord) {
+		arrayDisplayedGuess = new Array(currentWord.length);
+		arrayDisplayedGuess.fill("_");
+		arrayWrongGuessedLetters = [];
+		numGuesses = 0;
+		incorrectGuesses = 0;
+		attemptsRemaining = 12;
+		canPlay = true;
+		// document.addEventListener("DOMContentLoaded", function(event) {
+	  	updateDisplayedGuesses();
+	  	updateAttemptsRemaining();
+	  	updateFailedGuesses();
+	  	hideElement(repeatedIncorrectGuessElement);
+	  	clearGameStatusText();
+		// }
+	}
 	function updateDisplayedGuesses() {
 		guessElement.innerText = arrayDisplayedGuess.join("");
 	}
@@ -68,10 +85,23 @@ document.addEventListener("DOMContentLoaded", function(event) {
 	function doWonGameActions() {
 		gameStatusMessageElement.innerText = "Congratulations!!! You won.";
 	}
+	function clearGameStatusText() {
+		gameStatusMessageElement.innerText = "";
+	}
 	function hideElement(element) {
 		element.style.display = "none";
 	}
 	function showElement(element) {
 		element.style.display = "block";
+	}
+	function generateNewCurrentWord() {
+		currentWord = "rodeo";
+	}
+	function startFreshGameSameWord() {
+		startNewGame(currentWord);
+	}
+	function startFreshGameNewWord() {
+		generateNewCurrentWord();
+		startNewGame(currentWord);
 	}
 });
