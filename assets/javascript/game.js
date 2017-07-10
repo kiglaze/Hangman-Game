@@ -26,9 +26,9 @@ document.addEventListener("DOMContentLoaded", function(event) {
 	setImage(currentItem.imageFileName);
   	startNewGame(currentWord);
 	document.addEventListener('keydown', function(e) {
-		var alnumRegex = /^[0-9a-z]+$/;
-	    if(e.key.match(alnumRegex) && canPlay) {
-	    	var guessedLetter = e.key;
+		var alphaRegex = /^[A-Za-z]+$/;
+	    if(e.key.match(alphaRegex) && e.keyCode !== 16 && canPlay) {
+	    	var guessedLetter = e.key.toLowerCase();
 	    	if(currentWord.includes(guessedLetter)) {
 	    		hideElement(repeatedIncorrectGuessElement);
 	    		var isBlanksLeft = false;
@@ -68,7 +68,9 @@ document.addEventListener("DOMContentLoaded", function(event) {
     freshGameNewWordButton.addEventListener('click', function(e) {
     	startFreshGameNewWord();
     });
-
+    /*
+    * Starts a new game with a given word.
+    */
     function startNewGame(currentWord) {
 		arrayDisplayedGuess = new Array(currentWord.length);
 		arrayDisplayedGuess.fill("_");
@@ -84,9 +86,15 @@ document.addEventListener("DOMContentLoaded", function(event) {
 	  	clearGameStatusText();
 	  	setImage(currentItem.imageFileName);
 	}
+	/*
+	* Updates the place where the guessed letters go. Letters that have not yet been correctly guesses are represented by an "_".
+	*/
 	function updateDisplayedGuesses() {
 		guessElement.innerText = arrayDisplayedGuess.join("");
 	}
+	/*
+	* Updates the text saying the number of attempts remaining for the current word.
+	*/
 	function updateAttemptsRemaining() {
 		attemptsRemainingElement.innerText = attemptsRemaining;
 	}
