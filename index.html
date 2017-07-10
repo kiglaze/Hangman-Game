@@ -11,14 +11,30 @@
 	<link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
-	<h1>Hangman Game</h1>
-	<p>Guess letters</p>
-	<span class="my-guess"></span>
-	<p>You have <span class="attempts-remaining"></span> attempts remaining.</p>
-	<span class="wrong-guesses"></span>
-	<p class="repeated-incorrect-guess">You already guessed that letter, and it was incorrect. Please try another letter.</p>
-	<p class="game-status-message"></p>
-	<button class="fresh-game-same-word">Start over with current word.</button>
-	<button class="fresh-game-new-word">Start over with NEW word.</button>
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+				<h1>Hangman Game</h1>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-5 col-md-offset-1">
+				<img class="guess-this-image" src="" alt="">
+			</div>
+			<div class="col-md-6">
+				<p>Number of wins: <span class="wins-count">0</span></p>
+				<p>Guess letters. Type alphanumeric characters to guess.</p>
+				<span class="my-guess"></span>
+				<p>You have <span class="attempts-remaining"></span> attempts remaining.</p>
+				<span class="wrong-guesses"></span>
+				<p class="repeated-incorrect-guess">You already guessed that letter, and it was incorrect. Please try another letter.</p>
+				<p class="game-status-message"></p>
+				<button class="fresh-game-same-word">Start over with current word.</button>
+				<button class="fresh-game-new-word">Start over with NEW word.</button>
+			</div>
+		</div>
+	</div>
+	
+
 </body>
 </html>

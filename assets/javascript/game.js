@@ -1,7 +1,7 @@
 var possibleWhatIsThisItems = [
-	{name: "paragliding"},
-	{name: "kite"},
-	{name: "submarine"}
+	{name: "paragliding", imageFileName: "paragliding.jpg"},
+	{name: "kite", imageFileName: "kite.jpg"},
+	{name: "submarine", imageFileName: "submarine.png"}
 ];
 currentItem = pickRandomWhatIsThisItem(possibleWhatIsThisItems);
 var currentWord = currentItem.name;
@@ -13,6 +13,10 @@ document.addEventListener("DOMContentLoaded", function(event) {
 	var repeatedIncorrectGuessElement = document.querySelector(".repeated-incorrect-guess");
 	var freshGameSameWordButton = document.querySelector(".fresh-game-same-word");
 	var freshGameNewWordButton = document.querySelector(".fresh-game-new-word");
+	var guessItemImage = document.querySelector(".guess-this-image");
+	var winsCountElement = document.querySelector(".wins-count");
+	var winsCount = 0;
+	setImage(currentItem.imageFileName);
   	startNewGame(currentWord);
 	document.addEventListener('keydown', function(e) {
 		var alnumRegex = /^[0-9a-z]+$/;
@@ -66,13 +70,12 @@ document.addEventListener("DOMContentLoaded", function(event) {
 		incorrectGuesses = 0;
 		attemptsRemaining = 12;
 		canPlay = true;
-		// document.addEventListener("DOMContentLoaded", function(event) {
 	  	updateDisplayedGuesses();
 	  	updateAttemptsRemaining();
 	  	updateFailedGuesses();
 	  	hideElement(repeatedIncorrectGuessElement);
 	  	clearGameStatusText();
-		// }
+	  	setImage(currentItem.imageFileName);
 	}
 	function updateDisplayedGuesses() {
 		guessElement.innerText = arrayDisplayedGuess.join("");
@@ -89,6 +92,9 @@ document.addEventListener("DOMContentLoaded", function(event) {
 	}
 	function doWonGameActions() {
 		gameStatusMessageElement.innerText = "Congratulations!!! You won.";
+		winsCount++;
+		winsCountElement.innerText = winsCount;
+		canPlay = false;
 	}
 	function clearGameStatusText() {
 		gameStatusMessageElement.innerText = "";
@@ -109,6 +115,9 @@ document.addEventListener("DOMContentLoaded", function(event) {
 	function startFreshGameNewWord() {
 		generateNewCurrentWord();
 		startNewGame(currentWord);
+	}
+	function setImage(imageFileName) {
+		guessItemImage.setAttribute("src", "assets/images/" + imageFileName);
 	}
 });
 function pickRandomWhatIsThisItem(possibleWhatIsThisItems) {
