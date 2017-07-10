@@ -1,4 +1,10 @@
-var currentWord = "paragliding";
+var possibleWhatIsThisItems = [
+	{name: "paragliding"},
+	{name: "kite"},
+	{name: "submarine"}
+];
+currentItem = pickRandomWhatIsThisItem(possibleWhatIsThisItems);
+var currentWord = currentItem.name;
 document.addEventListener("DOMContentLoaded", function(event) { 
 	var guessElement = document.querySelector(".my-guess");
 	var attemptsRemainingElement = document.querySelector(".attempts-remaining");
@@ -9,7 +15,6 @@ document.addEventListener("DOMContentLoaded", function(event) {
 	var freshGameNewWordButton = document.querySelector(".fresh-game-new-word");
   	startNewGame(currentWord);
 	document.addEventListener('keydown', function(e) {
-		debugger;
 		var alnumRegex = /^[0-9a-z]+$/;
 	    if(e.key.match(alnumRegex) && canPlay) {
 	    	var guessedLetter = e.key;
@@ -95,7 +100,8 @@ document.addEventListener("DOMContentLoaded", function(event) {
 		element.style.display = "block";
 	}
 	function generateNewCurrentWord() {
-		currentWord = "rodeo";
+		currentItem = pickRandomWhatIsThisItem(possibleWhatIsThisItems);
+		currentWord = currentItem.name;
 	}
 	function startFreshGameSameWord() {
 		startNewGame(currentWord);
@@ -105,3 +111,9 @@ document.addEventListener("DOMContentLoaded", function(event) {
 		startNewGame(currentWord);
 	}
 });
+function pickRandomWhatIsThisItem(possibleWhatIsThisItems) {
+	return possibleWhatIsThisItems[getRandomInt(0, possibleWhatIsThisItems.length - 1)];
+}
+function getRandomInt(min, max) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+}
