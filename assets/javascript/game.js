@@ -107,6 +107,9 @@ document.addEventListener("DOMContentLoaded", function(event) {
 	}
 	function generateNewCurrentWord() {
 		currentItem = pickRandomWhatIsThisItem(possibleWhatIsThisItems);
+		if(currentItem.name === currentWord) {
+			generateNewCurrentWord();
+		}
 		currentWord = currentItem.name;
 	}
 	function startFreshGameSameWord() {
