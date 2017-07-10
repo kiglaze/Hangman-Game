@@ -1,7 +1,14 @@
 var possibleWhatIsThisItems = [
 	{name: "paragliding", imageFileName: "paragliding.jpg"},
 	{name: "kite", imageFileName: "kite.jpg"},
-	{name: "submarine", imageFileName: "submarine.png"}
+	{name: "submarine", imageFileName: "submarine.png"},
+	{name: "glacier", imageFileName: "glacier.jpg"},
+	{name: "snorkeling", imageFileName: "snorkeling.jpg"},
+	{name: "kiteboarding", imageFileName: "kiteboarding.jpg"},
+	{name: "bouldering", imageFileName: "bouldering.jpg"},
+	{name: "seal", imageFileName: "seal.jpg"},
+	{name: "kiwi", imageFileName: "kiwibird.jpg"},
+	{name: "panini", imageFileName: "panini.jpg"}
 ];
 currentItem = pickRandomWhatIsThisItem(possibleWhatIsThisItems);
 var currentWord = currentItem.name;
